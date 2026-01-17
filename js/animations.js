@@ -139,9 +139,74 @@
     document.addEventListener('DOMContentLoaded', () => {
       initScrollAnimations();
       initSectionNav();
+      initMagnifyingGlass();
+      initNavbarHighlighting();
     });
   } else {
     initScrollAnimations();
     initSectionNav();
+    initMagnifyingGlass();
+    initNavbarHighlighting();
   }
 })();
+
+// ========================================
+// MAGNIFYING GLASS EFFECT
+// ========================================
+
+function initMagnifyingGlass() {
+  const container = document.getElementById('magnifyContainer');
+  if (!container) return;
+
+  const clearText = container.querySelector('.magnify-clear');
+  const lens = document.getElementById('magnifyLens');
+  const lensRadius = 90;
+
+  container.addEventListener('mousemove', function(e) {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    clearText.style.clipPath = `circle(${lensRadius}px at ${x}px ${y}px)`;
+    lens.style.left = e.clientX + 'px';
+    lens.style.top = e.clientY + 'px';
+  });
+
+  container.addEventListener('mouseleave', function() {
+    clearText.style.clipPath = 'circle(0px at 0px 0px)';
+  });
+}
+
+// ========================================
+// NAVBAR SECTION HIGHLIGHTING
+// ========================================
+
+function initNavbarHighlighting() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  
+  function updateActiveNav() {
+    const scrollY = window.pageYOffset;
+    
+    sections.forEach(section => {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 100;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+  
+  // Update on scroll
+  window.addEventListener('scroll', updateActiveNav);
+  
+  // Update on page load
+  updateActiveNav();
+}
