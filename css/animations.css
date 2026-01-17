@@ -1,0 +1,264 @@
+/* ========================================
+   PORTFOLIO ANIMATIONS
+   ======================================== */
+
+/* ----------------------------------------
+   KEYFRAMES
+   ---------------------------------------- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* ----------------------------------------
+   PAGE LOAD ANIMATIONS
+   ---------------------------------------- */
+
+/* Hero title - uses fadeIn only to avoid transform breaking magnify effect */
+.anim-hero-title {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+/* Hero button */
+.anim-hero-btn {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+/* Navigation items stagger */
+.anim-nav-item {
+  opacity: 0;
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.anim-nav-item:nth-child(1) { animation-delay: 0.1s; }
+.anim-nav-item:nth-child(2) { animation-delay: 0.2s; }
+.anim-nav-item:nth-child(3) { animation-delay: 0.3s; }
+.anim-nav-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Header logo */
+.anim-logo {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Header LinkedIn */
+.anim-header-action {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+/* ----------------------------------------
+   SCROLL-TRIGGERED ANIMATIONS
+   ---------------------------------------- */
+
+/* Base state - hidden until triggered */
+.anim-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.anim-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scale variant */
+.anim-scale-on-scroll {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.anim-scale-on-scroll.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered children (for skill tags, project cards) */
+.anim-stagger-children .anim-stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.anim-stagger-children.is-visible .anim-stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.anim-stagger-item:nth-child(1) { transition-delay: 0.05s; }
+.anim-stagger-item:nth-child(2) { transition-delay: 0.1s; }
+.anim-stagger-item:nth-child(3) { transition-delay: 0.15s; }
+.anim-stagger-item:nth-child(4) { transition-delay: 0.2s; }
+.anim-stagger-item:nth-child(5) { transition-delay: 0.25s; }
+.anim-stagger-item:nth-child(6) { transition-delay: 0.3s; }
+.anim-stagger-item:nth-child(7) { transition-delay: 0.35s; }
+.anim-stagger-item:nth-child(8) { transition-delay: 0.4s; }
+.anim-stagger-item:nth-child(9) { transition-delay: 0.45s; }
+.anim-stagger-item:nth-child(10) { transition-delay: 0.5s; }
+.anim-stagger-item:nth-child(11) { transition-delay: 0.55s; }
+.anim-stagger-item:nth-child(12) { transition-delay: 0.6s; }
+
+/* ----------------------------------------
+   SECTION NAVIGATOR
+   ---------------------------------------- */
+
+.section-nav {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 999;
+}
+
+.section-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.section-nav-btn:hover:not(:disabled) {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.1);
+}
+
+.section-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.section-nav-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .section-nav {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .section-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ----------------------------------------
+   MICRO-INTERACTIONS
+   ---------------------------------------- */
+
+/* Project card lift on hover */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(245, 166, 35, 0.3);
+}
+
+/* Button press effect */
+.btn {
+  transition: transform 0.15s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* Skill tag bounce on hover */
+.skill-tag {
+  transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.skill-tag:hover {
+  animation: bounceSubtle 0.4s ease;
+}
+
+/* ----------------------------------------
+   REDUCED MOTION
+   ---------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .anim-on-scroll,
+  .anim-scale-on-scroll,
+  .anim-stagger-children .anim-stagger-item {
+    opacity: 1;
+    transform: none;
+  }
+}
