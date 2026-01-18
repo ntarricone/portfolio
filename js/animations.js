@@ -6,10 +6,36 @@
 (function() {
   'use strict';
 
-  // Configuration
+  // Configuration - adjusted for faster mobile loading
+  const isMobile = window.innerWidth <= 768;
   const config = {
-    threshold: 0.15,      // Trigger when 15% of element is visible
-    rootMargin: '0px 0px -50px 0px'  // Trigger slightly before element enters viewport
+    threshold: isMobile ? 0.05 : 0.15,  // Lower threshold on mobile for faster trigger
+    rootMargin: isMobile ? '0px 0px 150px 0px' : '0px 0px 50px 0px'  // Larger margin on mobile to trigger earlier
+  };
+
+  // ----------------------------------------
+  // ACCESSIBILITY HELPERS
+  // ----------------------------------------
+
+  // Announce message to screen readers via live region
+  function announceToScreenReader(message) {
+    const announcer = document.getElementById('sr-announcer');
+    if (announcer) {
+      announcer.textContent = '';
+      // Small delay to ensure the change is detected
+      setTimeout(() => {
+        announcer.textContent = message;
+      }, 100);
+    }
+  }
+
+  // Section name mapping for announcements
+  const sectionNames = {
+    'hero': 'Home',
+    'about': 'About Me',
+    'skills': 'Tech Stack',
+    'projects': 'Featured Projects',
+    'contact': 'Contact'
   };
 
   // Initialize scroll animations
@@ -94,6 +120,11 @@
         section.scrollIntoView({ behavior: 'smooth' });
         currentSectionIndex = index;
         updateButtonStates();
+
+        // Announce section change to screen readers
+        const sectionId = sections[index];
+        const sectionName = sectionNames[sectionId] || sectionId;
+        announceToScreenReader(`Navigated to ${sectionName} section`);
       }
     }
 
@@ -184,29 +215,34 @@ function initMagnifyingGlass() {
 function initNavbarHighlighting() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
-  
+
   function updateActiveNav() {
     const scrollY = window.pageYOffset;
-    
+
     sections.forEach(section => {
       const sectionHeight = section.offsetHeight;
       const sectionTop = section.offsetTop - 100;
       const sectionId = section.getAttribute('id');
-      
+
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
         navLinks.forEach(link => {
           link.classList.remove('active');
+          // Remove aria-current from all links
+          link.removeAttribute('aria-current');
+
           if (link.getAttribute('href') === `#${sectionId}`) {
             link.classList.add('active');
+            // Add aria-current for accessibility
+            link.setAttribute('aria-current', 'true');
           }
         });
       }
     });
   }
-  
+
   // Update on scroll
-  window.addEventListener('scroll', updateActiveNav);
-  
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+
   // Update on page load
   updateActiveNav();
 }
