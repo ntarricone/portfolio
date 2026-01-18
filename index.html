@@ -46,6 +46,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="js/components/Timeline.css" />
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -98,6 +99,7 @@
         </a>
         <nav>
           <a href="#about" class="anim-nav-item">About</a>
+          <a href="#experience" class="anim-nav-item">Experience</a>
           <a href="#skills" class="anim-nav-item">Tech Stack</a>
           <a href="#projects" class="anim-nav-item">Projects</a>
           <a href="#contact" class="anim-nav-item">Contact</a>
@@ -163,6 +165,17 @@
           </p>
         </div>
               </div>
+    </section>
+
+    <section class="experience" id="experience" aria-labelledby="experience-heading">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 60px" class="anim-on-scroll">
+          <h2 id="experience-heading">Work <span class="highlight">Experience</span></h2>
+        </div>
+
+        <!-- Timeline rendered by js/components/Timeline.js -->
+        <div id="timeline-container"></div>
+      </div>
     </section>
 
     <section
@@ -557,6 +570,7 @@
       <p>© 2026 Nahuel Tarricone. Crafted for performance.</p>
     </footer>
 
+    <script src="js/components/Timeline.js"></script>
     <script src="js/animations.js"></script>
   </body>
 </html>

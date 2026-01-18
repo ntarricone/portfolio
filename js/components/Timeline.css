@@ -1,0 +1,266 @@
+/* ========================================
+   TIMELINE COMPONENT STYLES
+   Self-contained styles for the Timeline component
+   ======================================== */
+
+/* ----------------------------------------
+   CSS VARIABLES (Component-specific)
+   ---------------------------------------- */
+:root {
+  --timeline-line-width: 2px;
+  --timeline-bullet-size: 16px;
+  --timeline-bullet-border: 3px;
+  --timeline-content-gap: 24px;
+}
+
+/* ----------------------------------------
+   EXPERIENCE SECTION
+   ---------------------------------------- */
+.experience {
+  padding: 120px 24px;
+  background: var(--bg-primary);
+}
+
+/* ----------------------------------------
+   TIMELINE CONTAINER
+   ---------------------------------------- */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: calc(var(--timeline-bullet-size) / 2 + var(--timeline-content-gap));
+}
+
+/* Timeline vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--timeline-bullet-size) / 2 - var(--timeline-line-width) / 2);
+  top: 0;
+  bottom: 0;
+  width: var(--timeline-line-width);
+  background: linear-gradient(180deg, var(--accent) 0%, var(--border-color) 100%);
+  border-radius: var(--timeline-line-width);
+}
+
+/* ----------------------------------------
+   TIMELINE ITEM
+   ---------------------------------------- */
+.timeline-item {
+  position: relative;
+  padding-bottom: 48px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* ----------------------------------------
+   TIMELINE MARKER (Bullet)
+   ---------------------------------------- */
+.timeline-marker {
+  position: absolute;
+  left: calc(-1 * var(--timeline-content-gap) - var(--timeline-bullet-size) / 2);
+  top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-bullet {
+  width: var(--timeline-bullet-size);
+  height: var(--timeline-bullet-size);
+  border-radius: 50%;
+  border: var(--timeline-bullet-border) solid var(--accent);
+  background: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+
+/* ----------------------------------------
+   TIMELINE CONTENT CARD
+   ---------------------------------------- */
+.timeline-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+/* ----------------------------------------
+   TIMELINE HEADER
+   ---------------------------------------- */
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.timeline-date {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ----------------------------------------
+   TIMELINE TOGGLE BUTTON
+   ---------------------------------------- */
+.timeline-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeline-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.timeline-toggle svg {
+  transition: transform 0.3s ease;
+}
+
+.timeline-toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* ----------------------------------------
+   TIMELINE TITLE & COMPANY
+   ---------------------------------------- */
+.timeline-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.timeline-company {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+}
+
+/* ----------------------------------------
+   TIMELINE DETAILS (Collapsible)
+   ---------------------------------------- */
+.timeline-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+
+.timeline-details.is-expanded {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 16px;
+}
+
+.timeline-details p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* ----------------------------------------
+   TIMELINE SKILLS
+   ---------------------------------------- */
+.timeline-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline-skills .skill-tag {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+/* ----------------------------------------
+   HOVER EFFECTS
+   ---------------------------------------- */
+.timeline-item:hover .timeline-content {
+  transform: translateX(4px);
+  border-color: rgba(195, 72, 19, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-item:hover .timeline-bullet {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(195, 72, 19, 0.5);
+}
+
+/* ----------------------------------------
+   RESPONSIVE - Desktop Alternating Layout
+   ---------------------------------------- */
+@media (min-width: 768px) {
+  .timeline {
+    padding-left: 0;
+    max-width: 900px;
+  }
+
+  .timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    width: 50%;
+    padding-right: var(--timeline-content-gap);
+    padding-left: 0;
+  }
+
+  .timeline-item:nth-child(odd) {
+    margin-left: 0;
+    padding-right: calc(var(--timeline-content-gap) + var(--timeline-bullet-size) / 2);
+    padding-left: 0;
+  }
+
+  .timeline-item:nth-child(even) {
+    margin-left: 50%;
+    padding-left: calc(var(--timeline-content-gap) + var(--timeline-bullet-size) / 2);
+    padding-right: 0;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-marker {
+    left: auto;
+    right: calc(-1 * var(--timeline-bullet-size) / 2);
+  }
+
+  .timeline-item:nth-child(even) .timeline-marker {
+    left: calc(-1 * var(--timeline-bullet-size) / 2);
+    right: auto;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content {
+    text-align: right;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-header {
+    flex-direction: row-reverse;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-skills {
+    justify-content: flex-end;
+  }
+
+  .timeline-item:nth-child(odd):hover .timeline-content {
+    transform: translateX(-4px);
+  }
+
+  .timeline-item:nth-child(even):hover .timeline-content {
+    transform: translateX(4px);
+  }
+}

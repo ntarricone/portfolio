@@ -33,6 +33,7 @@
   const sectionNames = {
     'hero': 'Home',
     'about': 'About Me',
+    'experience': 'Work Experience',
     'skills': 'Tech Stack',
     'projects': 'Featured Projects',
     'contact': 'Contact'
@@ -73,7 +74,7 @@
   // SECTION NAVIGATOR
   // ----------------------------------------
 
-  const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
+  const sections = ['hero', 'about', 'experience', 'skills', 'projects', 'contact'];
   let currentSectionIndex = 0;
 
   function initSectionNav() {
