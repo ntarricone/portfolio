@@ -35,8 +35,7 @@
     <meta name="msapplication-TileColor" content="#f5a623" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,7 +84,13 @@
     </script>
   </head>
   <body>
-    <header>
+    <!-- Skip to main content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Live region for screen reader announcements -->
+    <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <header role="banner">
       <div class="header-container">
         <a href="#" class="logo anim-logo">
           <div class="logo-icon">NT</div>
@@ -107,13 +112,15 @@
       </div>
     </header>
 
-    <section class="hero">
+    <main id="main-content" role="main">
+    <section class="hero" aria-labelledby="hero-heading">
       <div class="hero-content">
 
-        <div class="magnify-container anim-hero-title" id="magnifyContainer">
-          <div class="magnify-text">Senior <span class="highlight">React</span> Developer.</div>
-          <div class="magnify-clear">Senior <span class="highlight">React</span> Developer.</div>
-          <div class="magnify-lens" id="magnifyLens"></div>
+        <div class="magnify-container anim-hero-title" id="magnifyContainer" tabindex="0" role="img" aria-label="Senior React Developer - interactive magnifying glass effect, hover or focus to reveal">
+          <h1 id="hero-heading" class="sr-only">Senior React Developer</h1>
+          <div class="magnify-text" aria-hidden="true">Senior <span class="highlight">React</span> Developer.</div>
+          <div class="magnify-clear" aria-hidden="true">Senior <span class="highlight">React</span> Developer.</div>
+          <div class="magnify-lens" id="magnifyLens" aria-hidden="true"></div>
         </div>
 
         <div style="margin-top: 80px" class="anim-hero-btn">
@@ -123,10 +130,10 @@
               </div>
     </section>
 
-    <section class="about" id="about">
+    <section class="about" id="about" aria-labelledby="about-heading">
       <div class="container">
         <div style="text-align: center; max-width: 800px; margin: 0 auto" class="anim-on-scroll">
-          <h2>About <span class="highlight">Me</span></h2>
+          <h2 id="about-heading">About <span class="highlight">Me</span></h2>
           <p
             style="
               margin-top: 24px;
@@ -161,10 +168,11 @@
     <section
       style="padding: 100px 24px; background: var(--bg-primary)"
       id="skills"
+      aria-labelledby="skills-heading"
     >
       <div class="container">
         <div style="text-align: center; margin-bottom: 60px" class="anim-on-scroll">
-          <h2>Tech <span class="highlight">Stack</span></h2>
+          <h2 id="skills-heading">Tech <span class="highlight">Stack</span></h2>
         </div>
         <div
           style="
@@ -226,17 +234,20 @@
               </div>
     </section>
 
-    <section class="projects" id="projects">
+    <section class="projects" id="projects" aria-labelledby="projects-heading">
       <div class="container">
         <div style="text-align: center; margin-bottom: 60px" class="anim-on-scroll">
-          <h2>Featured <span class="highlight">Projects</span></h2>
+          <h2 id="projects-heading">Featured <span class="highlight">Projects</span></h2>
         </div>
         <div class="projects-grid anim-stagger-children">
           <div class="project-card anim-stagger-item">
             <div class="project-image">
               <img
                 src="images/dolphinze.png"
-                alt="Dolphinze platform screenshot"
+                alt="Dolphinze platform screenshot showing the crypto payroll dashboard"
+                width="400"
+                height="200"
+                loading="lazy"
               />
             </div>
             <div class="project-content">
@@ -263,7 +274,10 @@
             <div class="project-image">
               <img
                 src="images/inditex.png"
-                alt="Inditex Backoffice screenshot"
+                alt="Inditex Backoffice screenshot showing loyalty management interface"
+                width="400"
+                height="200"
+                loading="lazy"
               />
             </div>
             <div class="project-content">
@@ -280,7 +294,7 @@
           </div>
           <div class="project-card anim-stagger-item">
             <div class="project-image">
-              <img src="images/olagg.png" alt="Ola.gg platform screenshot" />
+              <img src="images/olagg.png" alt="Ola.gg NFT scholarship platform interface" width="400" height="200" loading="lazy" />
             </div>
             <div class="project-content">
               <div style="margin-bottom: 10px">
@@ -306,7 +320,10 @@
             <div class="project-image">
               <img
                 src="images/hovertrust.png"
-                alt="HoverTrusts exchange screenshot"
+                alt="HoverTrusts crypto exchange trading interface"
+                width="400"
+                height="200"
+                loading="lazy"
               />
             </div>
             <div class="project-content">
@@ -333,7 +350,10 @@
             <div class="project-image">
               <img
                 src="images/notarizer.png"
-                alt="Notarizer Docs application screenshot"
+                alt="Notarizer Docs blockchain document verification interface"
+                width="400"
+                height="200"
+                loading="lazy"
               />
             </div>
             <div class="project-content">
@@ -359,7 +379,10 @@
             <div class="project-image">
               <img
                 src="images/agribio.png"
-                alt="Agribioterra Organic screenshot"
+                alt="Agribioterra Organic logistics management dashboard"
+                width="400"
+                height="200"
+                loading="lazy"
               />
             </div>
             <div class="project-content">
@@ -383,7 +406,7 @@
           </div>
           <div class="project-card anim-stagger-item">
             <div class="project-image">
-              <img src="images/iloftmalaga.png" alt="iLoft Malaga screenshot" />
+              <img src="images/iloftmalaga.png" alt="iLoft Malaga booking and scheduling interface" width="400" height="200" loading="lazy" />
             </div>
             <div class="project-content">
               <div style="margin-bottom: 10px">
@@ -406,7 +429,7 @@
           </div>
           <div class="project-card anim-stagger-item">
             <div class="project-image">
-              <img src="images/ibyda.png" alt="IBYDA website screenshot" />
+              <img src="images/ibyda.png" alt="IBYDA biomedical research institution landing page" width="400" height="200" loading="lazy" />
             </div>
             <div class="project-content">
               <div style="margin-bottom: 10px">
@@ -429,7 +452,7 @@
           </div>
           <div class="project-card anim-stagger-item">
             <div class="project-image">
-              <img src="images/ibima.png" alt="IBIMA website screenshot" />
+              <img src="images/ibima.png" alt="IBIMA medical research institution website" width="400" height="200" loading="lazy" />
             </div>
             <div class="project-content">
               <div style="margin-bottom: 10px">
@@ -454,7 +477,10 @@
             <div class="project-image">
               <img
                 src="images/ihsm.png"
-                alt="IHSM La Mayora website screenshot"
+                alt="IHSM La Mayora horticulture research institute website"
+                width="400"
+                height="200"
+                loading="lazy"
               />
             </div>
             <div class="project-content">
@@ -479,7 +505,7 @@
           </div>
           <div class="project-card anim-stagger-item">
             <div class="project-image">
-              <img src="images/exity.png" alt="Exity mobile app screenshot" />
+              <img src="images/exity.png" alt="Exity tourism escape room mobile app interface" width="400" height="200" loading="lazy" />
             </div>
             <div class="project-content">
               <div style="margin-bottom: 10px">
@@ -505,12 +531,13 @@
               </div>
     </section>
 
-    <section id="contact" style="padding: 120px 24px; text-align: center">
-      <h1 class="anim-scale-on-scroll" style="font-size: clamp(48px, 8vw, 72px); margin-bottom: 32px; background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Let's build something <span class="highlight">great</span>.</h1>
+    <section id="contact" style="padding: 120px 24px; text-align: center" aria-labelledby="contact-heading">
+      <h2 id="contact-heading" class="anim-scale-on-scroll" style="font-size: clamp(48px, 8vw, 72px); margin-bottom: 32px; background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Let's build something <span class="highlight">great</span>.</h2>
       <a href="mailto:n.tarricone@hotmail.com.ar" class="btn btn-primary anim-on-scroll"
         >Send Email</a
       >
     </section>
+    </main>
 
     <!-- Section Navigator -->
     <nav class="section-nav" id="sectionNav" aria-label="Section navigation">
@@ -526,7 +553,7 @@
       </button>
     </nav>
 
-    <footer>
+    <footer role="contentinfo">
       <p>© 2026 Nahuel Tarricone. Crafted for performance.</p>
     </footer>
 
