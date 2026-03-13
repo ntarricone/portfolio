@@ -8,11 +8,11 @@
   --text-primary: #ffffff;
   --text-secondary: #9a9a9a;
   --text-muted: #666666;
-  --accent: #c34813;
-  --accent-hover: #ff550c;
+  --accent: #0d9488;
+  --accent-hover: #14b8a6;
   --border-color: #222222;
-  --gradient-start: #c34813;
-  --gradient-end: #ff550c;
+  --gradient-start: #0d9488;
+  --gradient-end: #14b8a6;
 }
 
 /* ========================================
